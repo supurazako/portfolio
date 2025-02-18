@@ -1,6 +1,7 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
 ---
 
 <html lang="en">
@@ -12,10 +13,8 @@ import Layout from '../layouts/Layout.astro';
         <title>Astro</title>
 	</head>
 	<body>
-        <a href="/">ホーム</a>
-        <a href="/about/">概要</a>
-        <a href="/blog/">ブログ</a>
-        <a href="/posts/ns-business-plan-contest/">N/S起業部 ビジネスプランコンテスト2024に参加してきました！</a>
+        <Navigation />
         <h1>supurazako</h1>
-	</body> 
+        <img src="/src/images/tomatokun.png" alt="icon" />
+	</body>
 </html>
