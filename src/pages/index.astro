@@ -1,10 +1,12 @@
 ---
+import "../styles/global.css";
+
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 ---
 
-<html lang="en">
+<html lang="ja">
 	<head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,7 +17,7 @@ import Navigation from '../components/Navigation.astro';
 	<body>
         <Navigation />
         <img src="/src/images/tomatokun.png" alt="icon" />
-        <p>Name: Miyamoto Naoyuki</p>
+        <p class="text-red-500">Name: Miyamoto Naoyuki</p>
         <p>Location: Japan, Sapporo</p>
         <p>Affilication: N High School</p>
         <p>Language: Java, JavaScript, TypeScript</p>
