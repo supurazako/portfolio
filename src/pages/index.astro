@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
 
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// import Welcome from '../components/Welcome.astro';
+// import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 ---
 
@@ -12,22 +12,36 @@ import Navigation from '../components/Navigation.astro';
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
+        <title>Portfolio</title>
 	</head>
 	<body>
         <Navigation />
-        <img src="/src/images/tomatokun.png" alt="icon" />
-        <p class="text-red-500">Name: Miyamoto Naoyuki</p>
-        <p>Location: Japan, Sapporo</p>
-        <p>Affilication: N High School</p>
-        <p>Language: Java, JavaScript, TypeScript</p>
-        <h2>興味分野</h2>
-        <ul>
-            <li>Web開発</li>
-            <li>電子工作</li>
-            <li>セキュリティ</li>
-            <li>ソフトウェア開発</li>
-        </ul>
-        <h2>個人開発</h2>
+        <div class="flex items-center container pt-3">
+            <div class="flex-1 text-left bg-blue-100 p-4">
+                <p class="text-red-500">Name: Miyamoto Naoyuki</p>
+                <p>Location: Japan, Sapporo</p>
+                <p>Affilication: N High School</p>
+                <p>Languages: Java, JavaScript, TypeScript, Arduino</p>
+                <p>Frameworks: React, Node.js, springframework</p>
+                <ul>Accounts:
+                    <li>X (<a href="https://x.com/Msprzk">Msprzk</a>)</li>
+                    <li>Github (<a href="https://github.com/supurazako">supurazako</a>)</li>
+                </ul>
+                <h2>Interest</h2>
+                <ul class="pl-2">
+                    <li>Web開発</li>
+                    <li>電子工作</li>
+                    <li>セキュリティ</li>
+                    <li>ソフトウェア開発</li>
+                    <li>位置情報</li>
+                </ul>
+                <h2>個人開発</h2>
+                <ul class="pl-2">
+                    <li>おにや配信通知bot(<a href="https://x.com/oniya_stream">Xアカウント</a>)</li>
+                    <li>and more...(<a href="https://github.com/supurazako">Github</a>)</li>
+                </ul>
+            </div>
+            <img class="p-4" src="/src/images/tomatokun.png" alt="icon" />
+        </div>
 	</body>
 </html>
