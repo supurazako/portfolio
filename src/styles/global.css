@@ -7,11 +7,15 @@
     }
 
     h1 {
-        @apply text-3xl font-bold p-2 pt-4;
+        @apply text-3xl font-thin p-2 pt-4 pb-4;
     }
 
     h2 {
-        @apply text-xl leading-12 font-semibold pt-2 pb-0;
+        @apply text-xl leading-12 font-extralight pt-2 pb-0;
+    }
+
+    h3 {
+        @apply text-lg leading-10 font-extralight pt-2 pb-0;
     }
 
     p {
@@ -19,7 +23,7 @@
     }
 
     ul {
-        @apply list-disc list-inside leading-7 font-semibold;
+        @apply text-xl list-disc list-inside leading-7 font-extralight;
     }
 
     li {
