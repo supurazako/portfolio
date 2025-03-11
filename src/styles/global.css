@@ -7,15 +7,15 @@
     }
 
     h1 {
-        @apply text-3xl font-bold p-2;
+        @apply text-3xl font-bold p-2 pt-4;
     }
 
     h2 {
-        @apply font-semibold pt-2;
+        @apply text-xl leading-12 font-semibold pt-2 pb-0;
     }
 
     p {
-        @apply leading-10;
+        @apply leading-8;
     }
 
     ul {
