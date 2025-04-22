@@ -5,6 +5,7 @@ import "../styles/global.css";
 // import Layout from '../layouts/Layout.astro';
 import DefaultHead from "../components/DefaultHead.astro";
 import Navigation from '../components/Navigation.astro';
+import WorksComponent from '../components/WorksComponent.astro';
 ---
 
 <html lang="ja">
@@ -13,7 +14,8 @@ import Navigation from '../components/Navigation.astro';
 	</head>
 	<body>
         <Navigation />
-        <div class="md:flex items-center container pt-3">
+        <div class="md:flex items-start flex-row-reverse container pt-3">
+            <img class="p-4 " src={`${import.meta.env.BASE_URL}tomatokun.png`} alt="icon" />
             <div class="flex-1 text-left bg-blue-100 p-4">
                 <p class="text-red-500">Name: Miyamoto Naoyuki</p>
                 <p>Location: Japan, Sapporo</p>
@@ -33,13 +35,8 @@ import Navigation from '../components/Navigation.astro';
                     <li>ソフトウェア開発</li>
                     <li>位置情報</li>
                 </ul>
-                <h2>個人開発</h2>
-                <ul>
-                    <li>おにや配信通知bot（<a href="https://x.com/oniya_stream">Xアカウント</a>）</li>
-                    <li>Minecraft plugins, ...and more!（<a href="https://github.com/supurazako">Github</a>）</li>
-                </ul>
+                <WorksComponent />
             </div>
-            <img class="p-4" src={`${import.meta.env.BASE_URL}tomatokun.png`} alt="icon" />
         </div>
 	</body>
 </html>
