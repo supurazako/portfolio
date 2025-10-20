@@ -1,13 +1,13 @@
 ---
-import '../styles/global.css';
-import { content, defaultLanguage } from "../i18n/content";
+import "../styles/global.css";
+import type { WorksContent } from "../i18n/ui";
 
-const worksContent = content[defaultLanguage].works;
+const { works } = Astro.props as { works: WorksContent };
 ---
 
-<section data-i18n-works>
-    <h1>{worksContent.heading}</h1>
-    {worksContent.sections.map((section) => (
+<section>
+    <h1>{works.heading}</h1>
+    {works.sections.map((section) => (
         <div class="mt-6">
             <h2>{section.title}</h2>
             {section.items.map((item) => (

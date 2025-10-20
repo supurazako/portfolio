@@ -1,0 +1,51 @@
+---
+import "../../styles/global.css";
+import DefaultHead from "../../components/DefaultHead.astro";
+import Navigation from "../../components/Navigation.astro";
+import type { Language } from "../../i18n/ui";
+import {
+    getLangFromUrl,
+    getLanguageStaticPaths,
+    translateRouteSegment,
+    useTranslations,
+    useTranslatedPath,
+} from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url) as Language;
+const t = useTranslations(lang);
+const blogContent = t("blog");
+const metaContent = t("meta");
+const translatePath = useTranslatedPath(lang);
+const postsSegment = translateRouteSegment("posts", lang);
+const base = import.meta.env.BASE_URL;
+const normalizedBase = base.endsWith("/") ? base.slice(0, -1) : base;
+
+function getPostHref(slug: string) {
+    const relative = `/${postsSegment}/${slug}/`;
+    const path = translatePath(relative, lang);
+    return normalizedBase ? `${normalizedBase}${path}` : path;
+}
+
+export function getStaticPaths() {
+    return getLanguageStaticPaths();
+}
+---
+
+<html lang={lang}>
+    <head>
+        <DefaultHead title={metaContent.title} description={metaContent.description} />
+    </head>
+    <body>
+        <Navigation lang={lang} />
+        <main class="container space-y-4 py-6">
+            <h1 class="text-2xl font-semibold">{blogContent.heading}</h1>
+            <div class="flex flex-col gap-2">
+                {blogContent.posts.map((post) => (
+                    <a class="text-black text-lg underline" href={getPostHref(post.slug)}>
+                        {post.title}
+                    </a>
+                ))}
+            </div>
+        </main>
+    </body>
+</html>

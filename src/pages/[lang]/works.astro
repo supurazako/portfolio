@@ -1,0 +1,29 @@
+---
+import "../../styles/global.css";
+import DefaultHead from "../../components/DefaultHead.astro";
+import Navigation from "../../components/Navigation.astro";
+import WorksComponent from "../../components/WorksComponent.astro";
+import type { Language } from "../../i18n/ui";
+import { getLangFromUrl, getLanguageStaticPaths, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url) as Language;
+const t = useTranslations(lang);
+const worksContent = t("works");
+const metaContent = t("meta");
+
+export function getStaticPaths() {
+    return getLanguageStaticPaths();
+}
+---
+
+<html lang={lang}>
+    <head>
+        <DefaultHead title={metaContent.title} description={metaContent.description} />
+    </head>
+    <body>
+        <Navigation lang={lang} />
+        <main class="container space-y-6 py-6">
+            <WorksComponent works={worksContent} />
+        </main>
+    </body>
+</html>

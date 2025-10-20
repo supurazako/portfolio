@@ -1,0 +1,68 @@
+---
+import "../../../styles/global.css";
+import DefaultHead from "../../../components/DefaultHead.astro";
+import Navigation from "../../../components/Navigation.astro";
+import type { Language } from "../../../i18n/ui";
+import { defaultLang } from "../../../i18n/ui";
+import { getLangFromUrl, getLanguageStaticPaths } from "../../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url) as Language;
+const publishedAt = "2025-02-07";
+
+const article = {
+    ja: {
+        title: "N/S起業部 ビジネスプランコンテスト2024に参加してきました！",
+        description:
+            "N/S起業部ビジネスプランコンテスト2024で、開発中のStyralyを携えて決勝に挑戦しました。",
+        postedLabel: "投稿日",
+        paragraphs: [
+            "N/S高の起業部で行われた「N/S起業部 ビジネスプランコンテスト2024」に参加してきました！ 結果は50組中3位という嬉しいものになりました！",
+            "夏野さん、家入さんの前でプレゼンを行うという経験はとてもおもしろかったです。チームのメンバーと協力して作っている「つながらないSNS、Styraly」は2025年5月リリースに向けて鋭意制作中です。",
+        ],
+        videoLabel: "↓決勝の様子",
+    },
+    en: {
+        title: "We joined the N/S Entrepreneurship Business Plan Contest 2024!",
+        description:
+            "Our team brought the in-development Styraly project to the N/S Entrepreneurship Business Plan Contest 2024 and finished in third place.",
+        postedLabel: "Published on",
+        paragraphs: [
+            "We took part in the N/S Entrepreneurship Business Plan Contest 2024 and proudly placed third out of 50 teams!",
+            "Pitching Styraly in front of Mr. Natsuno and Mr. Ieiri was a thrilling experience. Our team is working hard to release this “disconnected” SNS in May 2025.",
+        ],
+        videoLabel: "Final round stream",
+    },
+} as const;
+
+const content = article[lang] ?? article[defaultLang];
+
+export function getStaticPaths() {
+    return getLanguageStaticPaths();
+}
+---
+
+<html lang={lang}>
+    <DefaultHead title={content.title} description={content.description} />
+    <body>
+        <Navigation lang={lang} />
+        <main class="container space-y-4 py-6">
+            <h1>{content.title}</h1>
+            <h2>{content.postedLabel}: {publishedAt}</h2>
+            {content.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+            ))}
+            <p>{content.videoLabel}</p>
+            <div class="aspect-video">
+                <iframe
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/95TdKHZaFm8?si=sW42tkhzN3kO6SSV"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                />
+            </div>
+        </main>
+    </body>
+</html>

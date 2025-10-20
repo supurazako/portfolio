@@ -1,18 +1,40 @@
 ---
-import '../styles/global.css';
-import { content, defaultLanguage } from "../i18n/content";
+import "../styles/global.css";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
+import type { Language } from "../i18n/ui";
+import {
+    getLangFromUrl,
+    translateRouteSegment,
+    useTranslations,
+    useTranslatedPath,
+    type RouteKey,
+} from "../i18n/utils";
 
-const navContent = content[defaultLanguage].navigation;
+const props = Astro.props as { lang?: Language };
+const lang = props.lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const navContent = t("navigation");
+const translatePath = useTranslatedPath(lang);
+const base = import.meta.env.BASE_URL;
+const normalizedBase = base.endsWith("/") ? base.slice(0, -1) : base;
+
+function getHref(routeKey: RouteKey): string {
+    const segment = translateRouteSegment(routeKey, lang);
+    const trimmed = segment.replace(/^\/+/, "").replace(/\/+$/, "");
+    const relative =
+        routeKey === "home" && trimmed === "" ? "/" : `/${trimmed}/`;
+    const path = translatePath(relative, lang);
+    return normalizedBase ? `${normalizedBase}${path}` : path;
+}
 ---
 
-<div class="w-full bg-blue-500 p-4" data-i18n-nav>
+<div class="w-full bg-blue-500 p-4">
     <nav class="flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-center gap-4">
-            <a class="text-white" data-nav-key="home" href={`${import.meta.env.BASE_URL}`}>{navContent.home}</a>
-            <a class="text-white" data-nav-key="blog" href={`${import.meta.env.BASE_URL}blog/`}>{navContent.blog}</a>
-            <a class="text-white" data-nav-key="works" href={`${import.meta.env.BASE_URL}works/`}>{navContent.works}</a>
+            <a class="text-white" href={getHref("home")} data-nav-key="home">{navContent.home}</a>
+            <a class="text-white" href={getHref("blog")} data-nav-key="blog">{navContent.blog}</a>
+            <a class="text-white" href={getHref("works")} data-nav-key="works">{navContent.works}</a>
         </div>
-        <LanguageSwitcher />
+        <LanguageSwitcher lang={lang} />
     </nav>
 </div>

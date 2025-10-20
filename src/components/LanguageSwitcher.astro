@@ -1,21 +1,72 @@
 ---
-import { languageLabels, supportedLanguages } from "../i18n/content";
-import scriptModule from "../scripts/init-language-switcher.ts?url";
+import type { Language } from "../i18n/ui";
+import { languages, routes } from "../i18n/ui";
+import {
+    getLangFromUrl,
+    translateRouteSegment,
+    useTranslatedPath,
+    stripBaseSegments,
+    type RouteKey,
+} from "../i18n/utils";
+
+const props = Astro.props as { lang?: Language };
+const currentLang = props.lang ?? getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(currentLang);
+const entries = Object.entries(languages) as [Language, string][];
+
+const base = import.meta.env.BASE_URL;
+const normalizedBase = base.endsWith("/") ? base.slice(0, -1) : base;
+
+const segments = stripBaseSegments(Astro.url.pathname);
+const restSegments =
+    segments.length && segments[0] in languages ? segments.slice(1) : segments;
+
+const routeKeys = Object.keys(routes[currentLang]) as RouteKey[];
+
+function toSegment(segment: string, target: Language): string {
+    const matchedKey = routeKeys.find((key) => routes[currentLang][key] === segment);
+    if (!matchedKey) {
+        return segment;
+    }
+    return translateRouteSegment(matchedKey, target);
+}
+
+function withBase(path: string): string {
+    if (!normalizedBase) {
+        return path;
+    }
+    return `${normalizedBase}${path}`;
+}
+
+const links = entries.map(([lang, label]) => {
+    const translatedSegments = restSegments.map((segment) => toSegment(segment, lang));
+    const relativePath =
+        translatedSegments.length === 0 ? "/" : `/${translatedSegments.join("/")}/`;
+    const href = translatePath(relativePath, lang);
+    return {
+        lang,
+        label,
+        href: withBase(href),
+        active: lang === currentLang,
+    };
+});
 ---
 
-<div class="flex items-center gap-2 text-sm text-white" data-language-switcher>
+<div class="flex items-center gap-2 text-sm text-white">
     <span class="font-semibold uppercase tracking-wide">Language</span>
     <div class="flex overflow-hidden rounded border border-white/40">
-        {supportedLanguages.map((lang) => (
-            <button
-                type="button"
-                class="px-3 py-1 text-xs font-semibold transition-colors"
-                data-language-button={lang}
+        {links.map(({ lang, label, href, active }) => (
+            <a
+                href={href}
+                class={[
+                    "px-3 py-1 text-xs font-semibold transition-colors",
+                    active ? "bg-white text-blue-600" : "bg-blue-500 text-white/80 hover:bg-blue-400",
+                ]}
+                aria-current={active ? "page" : undefined}
+                hreflang={lang}
             >
-                {languageLabels[lang]}
-            </button>
+                {label}
+            </a>
         ))}
     </div>
 </div>
-
-<script type="module" src={scriptModule}></script>

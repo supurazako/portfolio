@@ -1,24 +1,22 @@
-export type Language = "ja" | "en";
-
-type NavContent = {
+export type NavContent = {
     home: string;
     blog: string;
     works: string;
 };
 
-type TechCategory = {
+export type TechCategory = {
     title: string;
     items: string[];
 };
 
-type AccountLink = {
+export type AccountLink = {
     id: string;
     label: string;
     href: string;
     value: string;
 };
 
-type WorkItem = {
+export type WorkItem = {
     name: string;
     description: string;
     details?: string;
@@ -36,27 +34,27 @@ type WorkItem = {
     }[];
 };
 
-type WorkSection = {
+export type WorkSection = {
     title: string;
     items: WorkItem[];
 };
 
-type WorksContent = {
+export type WorksContent = {
     heading: string;
     sections: WorkSection[];
 };
 
-type BlogPost = {
+export type BlogPost = {
     slug: string;
     title: string;
 };
 
-type BlogContent = {
+export type BlogContent = {
     heading: string;
     posts: BlogPost[];
 };
 
-type IndexContent = {
+export type IndexContent = {
     name: string;
     location: string;
     affiliation: string;
@@ -69,12 +67,12 @@ type IndexContent = {
     contact: string;
 };
 
-type MetaContent = {
+export type MetaContent = {
     title: string;
     description: string;
 };
 
-type PageContent = {
+export type PageContent = {
     navigation: NavContent;
     index: IndexContent;
     works: WorksContent;
@@ -82,16 +80,33 @@ type PageContent = {
     meta: MetaContent;
 };
 
-export const defaultLanguage: Language = "ja";
-
-export const supportedLanguages: Language[] = ["ja", "en"];
-
-export const languageLabels: Record<Language, string> = {
+export const languages = {
     ja: "日本語",
     en: "English",
-};
+} as const;
 
-export const content: Record<Language, PageContent> = {
+export type Language = keyof typeof languages;
+
+export const defaultLang: Language = "ja";
+
+export const showDefaultLang = true;
+
+export const routes = {
+    ja: {
+        home: "",
+        blog: "blog",
+        works: "works",
+        posts: "posts",
+    },
+    en: {
+        home: "",
+        blog: "blog",
+        works: "works",
+        posts: "posts",
+    },
+} as const;
+
+export const ui: Record<Language, PageContent> = {
     ja: {
         navigation: {
             home: "ホーム",
