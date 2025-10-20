@@ -1,9 +1,18 @@
 ---
 import '../styles/global.css';
+import { content, defaultLanguage } from "../i18n/content";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+const navContent = content[defaultLanguage].navigation;
 ---
 
-<div class="w-full bg-blue-500 p-4">
-    <a class="text-white" href={`${import.meta.env.BASE_URL}`}>Home</a>
-    <a class="text-white" href={`${import.meta.env.BASE_URL}blog/`}>Blog</a>
-    <a class="text-white" href={`${import.meta.env.BASE_URL}works/`}>Works</a>
+<div class="w-full bg-blue-500 p-4" data-i18n-nav>
+    <nav class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-4">
+            <a class="text-white" data-nav-key="home" href={`${import.meta.env.BASE_URL}`}>{navContent.home}</a>
+            <a class="text-white" data-nav-key="blog" href={`${import.meta.env.BASE_URL}blog/`}>{navContent.blog}</a>
+            <a class="text-white" data-nav-key="works" href={`${import.meta.env.BASE_URL}works/`}>{navContent.works}</a>
+        </div>
+        <LanguageSwitcher />
+    </nav>
 </div>

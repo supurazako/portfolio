@@ -1,0 +1,21 @@
+---
+import { languageLabels, supportedLanguages } from "../i18n/content";
+import scriptModule from "../scripts/init-language-switcher.ts?url";
+---
+
+<div class="flex items-center gap-2 text-sm text-white" data-language-switcher>
+    <span class="font-semibold uppercase tracking-wide">Language</span>
+    <div class="flex overflow-hidden rounded border border-white/40">
+        {supportedLanguages.map((lang) => (
+            <button
+                type="button"
+                class="px-3 py-1 text-xs font-semibold transition-colors"
+                data-language-button={lang}
+            >
+                {languageLabels[lang]}
+            </button>
+        ))}
+    </div>
+</div>
+
+<script type="module" src={scriptModule}></script>

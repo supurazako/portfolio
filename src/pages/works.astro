@@ -2,10 +2,13 @@
 import DefaultHead from "../components/DefaultHead.astro";
 import Navigation from "../components/Navigation.astro";
 import WorksComponent from "../components/WorksComponent.astro";
+import { content, defaultLanguage } from "../i18n/content";
+
+const pageContent = content[defaultLanguage];
 ---
 
-<html lang="ja">
-<DefaultHead title="Works" />
+<html lang={defaultLanguage}>
+<DefaultHead title={pageContent.meta.title} description={pageContent.meta.description} />
     <body>
         <Navigation />
         <WorksComponent />
