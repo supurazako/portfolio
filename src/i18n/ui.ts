@@ -116,7 +116,7 @@ export const ui: Record<Language, PageContent> = {
         index: {
             name: "名前: 宮本 直幸",
             location: "活動拠点: 日本・札幌",
-            affiliation: "所属: 北海道情報大学 システム情報学部",
+            affiliation: "所属: 北海道情報大学 経営情報学部 システム情報学科",
             techStackTitle: "技術スタック",
             techCategories: [
                 {
@@ -230,7 +230,7 @@ export const ui: Record<Language, PageContent> = {
         index: {
             name: "Name: Naoyuki Miyamoto",
             location: "Location: Sapporo, Japan",
-            affiliation: "Affiliation: Department of System Information, Hokkaido Information University",
+            affiliation: "Affiliation: Faculty of Management and Information Science, Department of System Information Science, Hokkaido Information University",
             techStackTitle: "Tech Stack",
             techCategories: [
                 {
