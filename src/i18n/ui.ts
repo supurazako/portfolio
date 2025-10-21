@@ -124,7 +124,7 @@ export const ui: Record<Language, PageContent> = {
                     items: ["Java", "TypeScript", "JavaScript", "Go", "PHP"],
                 },
                 {
-                    title: "Webフレームワーク",
+                    title: "フレームワーク",
                     items: ["React", "Spring Framework", "Laravel", "Node.js"],
                 },
                 {
@@ -242,7 +242,7 @@ export const ui: Record<Language, PageContent> = {
                     items: ["Java", "TypeScript", "JavaScript", "Go", "PHP"],
                 },
                 {
-                    title: "Web Frameworks",
+                    title: "Frameworks",
                     items: ["React", "Spring Framework", "Laravel", "Node.js"],
                 },
                 {
