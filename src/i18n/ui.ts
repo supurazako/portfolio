@@ -136,6 +136,10 @@ export const ui: Record<Language, PageContent> = {
             accounts: [
                 { id: "x", label: "X", href: "https://x.com/Msprzk", value: "Msprzk" },
                 { id: "github", label: "GitHub", href: "https://github.com/supurazako", value: "supurazako" },
+                { id: "qiita", label: "Qiita", href: "https://qiita.com/supurazako", value: "supurazako" },
+                { id: "zenn", label: "Zenn", href: "https://zenn.dev/supurazako", value: "supurazako" },
+                { id: "linkedin", label: "linkedIn", href: "https://www.linkedin.com/in/miyamoto-naoyuki-85a524341/", value: "supurazako" },
+                { id: "blog", label: "blog(勉強会の記録など)", href: "https://supurazako.com", value: "supurazako.com" },
             ],
             interestsTitle: "興味分野",
             interests: ["Web開発", "ネットワーク", "リアルタイム通信", "セキュリティ", "ソフトウェア開発"],
@@ -250,6 +254,10 @@ export const ui: Record<Language, PageContent> = {
             accounts: [
                 { id: "x", label: "X", href: "https://x.com/Msprzk", value: "Msprzk" },
                 { id: "github", label: "GitHub", href: "https://github.com/supurazako", value: "supurazako" },
+                { id: "qiita", label: "Qiita", href: "https://qiita.com/supurazako", value: "supurazako" },
+                { id: "zenn", label: "Zenn", href: "https://zenn.dev/supurazako", value: "supurazako" },
+                { id: "linkedin", label: "linkedIn", href: "https://www.linkedin.com/in/miyamoto-naoyuki-85a524341/", value: "supurazako" },
+                { id: "blog", label: "blog(for meetup, conf)", href: "https://supurazako.com", value: "supurazako.com" },
             ],
             interestsTitle: "Interests",
             interests: ["Web Development", "Computer Networking", "Real-time Communication", "Security", "Software Engineering"],
