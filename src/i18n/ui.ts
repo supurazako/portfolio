@@ -182,7 +182,7 @@ export const ui: Record<Language, PageContent> = {
                         {
                             name: "nicomado",
                             image: {
-                                src: `${import.meta.env.BASE_URL}nicomado-image.png`,
+                                src: `${import.meta.env.BASE_URL}nicomado-image.webp`,
                                 alt: "nicomadoのスクリーンショット",
                                 width: 600,
                                 height: 200,
@@ -204,6 +204,12 @@ export const ui: Record<Language, PageContent> = {
                     items: [
                         {
                             name: "おにや配信通知bot",
+                            image: {
+                                src: `${import.meta.env.BASE_URL}oniya-stream-image.webp`,
+                                alt: "おにや配信通知botのスクリーンショット",
+                                width: 600,
+                                height: 200,
+                            },
                             links: [
                                 {
                                     label: "X",
@@ -221,6 +227,12 @@ export const ui: Record<Language, PageContent> = {
                     items: [
                         {
                             name: "低レイヤーズさっぽろ",
+                            image: {
+                                src: `${import.meta.env.BASE_URL}low-layers-sapporo.webp`,
+                                alt: "Screenshot of Low Layers Sapporo",
+                                width: 300,
+                                height: 100,
+                            },
                             links: [
                                 {
                                     label: "connpass",
@@ -317,7 +329,7 @@ export const ui: Record<Language, PageContent> = {
                         {
                             name: "nicomado",
                             image: {
-                                src: `${import.meta.env.BASE_URL}nicomado-image.png`,
+                                src: `${import.meta.env.BASE_URL}nicomado-image.webp`,
                                 alt: "Screenshot of nicomado",
                                 width: 600,
                                 height: 200,
@@ -339,6 +351,12 @@ export const ui: Record<Language, PageContent> = {
                     items: [
                         {
                             name: "Oniya stream notifier bot",
+                            image: {
+                                src: `${import.meta.env.BASE_URL}oniya-stream-image.webp`,
+                                alt: "Screenshot of Oniya stream notifier bot",
+                                width: 600,
+                                height: 200,
+                            },
                             links: [
                                 {
                                     label: "X",
@@ -356,6 +374,12 @@ export const ui: Record<Language, PageContent> = {
                     items: [
                         {
                             name: "Low Layers Sapporo",
+                            image: {
+                                src: `${import.meta.env.BASE_URL}low-layers-sapporo.webp`,
+                                alt: "Screenshot of Low Layers Sapporo",
+                                width: 300,
+                                height: 100,
+                            },
                             links: [
                                 {
                                     label: "connpass",
