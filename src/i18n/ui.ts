@@ -4,9 +4,15 @@ export type NavContent = {
     works: string;
 };
 
+export type TechItem = {
+    name: string;
+    years?: number;
+    note?: string;
+};
+
 export type TechCategory = {
     title: string;
-    items: string[];
+    items: TechItem[];
 };
 
 export type AccountLink = {
@@ -121,15 +127,32 @@ export const ui: Record<Language, PageContent> = {
             techCategories: [
                 {
                     title: "言語",
-                    items: ["Java", "TypeScript", "JavaScript", "Go", "PHP"],
+                    items: [
+                        { name: "Java", years: 2 },
+                        { name: "TypeScript", years: 1.5 },
+                        { name: "JavaScript", years: 3 },
+                        { name: "Go", years: 0.5 },
+                        { name: "PHP", years: 0.5 },
+                    ],
                 },
                 {
                     title: "フレームワーク",
-                    items: ["React", "Spring Framework", "Laravel", "Node.js"],
+                    items: [
+                        { name: "React", years: 2 },
+                        { name: "Spring Framework", years: 1 },
+                        { name: "Laravel", years: 0.5 },
+                        { name: "Node.js", years: 3 },
+                    ],
                 },
                 {
                     title: "DevOps & インフラ構築",
-                    items: ["AWS", "Docker", "PostgreSQL", "Git", "GitHub Workflow"],
+                    items: [
+                        { name: "AWS", years: 2 },
+                        { name: "Docker", years: 1 },
+                        { name: "PostgreSQL", years: 1 },
+                        { name: "Git", years: 3 },
+                        { name: "GitHub Workflow", years: 0.5 },
+                    ],
                 },
             ],
             accountsTitle: "アカウント",
@@ -239,15 +262,32 @@ export const ui: Record<Language, PageContent> = {
             techCategories: [
                 {
                     title: "Core Languages",
-                    items: ["Java", "TypeScript", "JavaScript", "Go", "PHP"],
+                    items: [
+                        { name: "Java", years: 4 },
+                        { name: "TypeScript", years: 2 },
+                        { name: "JavaScript", years: 3 },
+                        { name: "Go", years: 1 },
+                        { name: "PHP", years: 1 },
+                    ],
                 },
                 {
                     title: "Frameworks",
-                    items: ["React", "Spring Framework", "Laravel", "Node.js"],
+                    items: [
+                        { name: "React", years: 2 },
+                        { name: "Spring Framework", years: 3 },
+                        { name: "Laravel", years: 1 },
+                        { name: "Node.js", years: 2 },
+                    ],
                 },
                 {
                     title: "DevOps & Infrastructure",
-                    items: ["AWS", "Docker", "PostgreSQL", "Git", "GitHub Workflow"],
+                    items: [
+                        { name: "AWS", years: 2 },
+                        { name: "Docker", years: 2 },
+                        { name: "PostgreSQL", years: 1 },
+                        { name: "Git", years: 4 },
+                        { name: "GitHub Workflow", years: 1 },
+                    ],
                 },
             ],
             accountsTitle: "Accounts",

@@ -12,6 +12,13 @@ const indexContent = t("index");
 const worksContent = t("works");
 const metaContent = t("meta");
 const techCategories = indexContent.techCategories;
+const formatYears = (years: number, currentLang: Language) => {
+    if (currentLang === "ja") {
+        return `${years}年`;
+    }
+    const suffix = years === 1 ? "yr" : "yrs";
+    return `${years} ${suffix}`;
+};
 
 export function getStaticPaths() {
     return getLanguageStaticPaths();
@@ -38,7 +45,14 @@ export function getStaticPaths() {
                                 <h3 class="text-sm font-semibold text-blue-700">{category.title}</h3>
                                 <ul class="mt-2 list-disc list-inside space-y-1 text-sm">
                                     {category.items.map((item) => (
-                                        <li>{item}</li>
+                                        <li>
+                                            <span>{item.name}</span>
+                                            {item.years ? (
+                                                <span class="ml-2 text-slate-500">
+                                                    {formatYears(item.years, lang)}
+                                                </span>
+                                            ) : null}
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
