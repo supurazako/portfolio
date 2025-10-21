@@ -128,7 +128,7 @@ export const ui: Record<Language, PageContent> = {
                     items: ["React", "Spring Framework", "Laravel", "Node.js"],
                 },
                 {
-                    title: "DevOps & プラットフォーム",
+                    title: "DevOps & インフラ構築",
                     items: ["AWS", "Docker", "PostgreSQL", "Git", "GitHub Workflow"],
                 },
             ],
@@ -246,7 +246,7 @@ export const ui: Record<Language, PageContent> = {
                     items: ["React", "Spring Framework", "Laravel", "Node.js"],
                 },
                 {
-                    title: "DevOps & Platforms",
+                    title: "DevOps & Infrastructure",
                     items: ["AWS", "Docker", "PostgreSQL", "Git", "GitHub Workflow"],
                 },
             ],
