@@ -170,7 +170,7 @@ export const ui: Record<Language, PageContent> = {
                 ],
             },
             selectedWork: {
-                heading: "Selected Work",
+                heading: "Work",
                 items: [
                     {
                         title: "NATハンズオン",
@@ -409,7 +409,7 @@ export const ui: Record<Language, PageContent> = {
                 ],
             },
             selectedWork: {
-                heading: "Selected Work",
+                heading: "Work",
                 items: [
                     {
                         title: "NAT Hands-on Workshop",

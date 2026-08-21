@@ -2,7 +2,7 @@
 import "../../styles/global.css";
 import DefaultHead from "../../components/DefaultHead.astro";
 import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
-import type { Language, ProfileSection } from "../../i18n/ui";
+import type { Language } from "../../i18n/ui";
 import { getLangFromUrl, getLanguageStaticPaths, useTranslations } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url) as Language;
@@ -10,13 +10,19 @@ const t = useTranslations(lang);
 const content = t("index");
 const metaContent = t("meta");
 
-const mainSections: ProfileSection[] = [
-    content.experience,
-    content.securityActivities,
-    content.selectedWork,
-    content.talks,
-    content.community,
+const mainSections = [
+    { id: "experience", section: content.experience, featured: false },
+    { id: "activities", section: content.securityActivities, featured: true },
+    { id: "work", section: content.selectedWork, featured: true },
+    { id: "talks", section: content.talks, featured: false },
+    { id: "community", section: content.community, featured: false },
 ];
+const primaryAccountIds = new Set(["x", "github", "zenn", "speakerdeck", "blog"]);
+const primaryAccounts = content.accounts.filter((account) => primaryAccountIds.has(account.id));
+const secondaryAccounts = content.accounts.filter((account) => !primaryAccountIds.has(account.id));
+const labels = lang === "ja"
+    ? { navigation: "ページ内ナビゲーション", tags: "技術・キーワード", newTab: "（新しいタブで開きます）", moreLinks: "そのほかのリンク" }
+    : { navigation: "Page navigation", tags: "Technologies and keywords", newTab: "(opens in a new tab)", moreLinks: "More links" };
 
 export function getStaticPaths() {
     return getLanguageStaticPaths();
@@ -28,7 +34,7 @@ export function getStaticPaths() {
         <DefaultHead title={metaContent.title} description={metaContent.description} />
     </head>
     <body>
-        <main class="container">
+        <main class="portfolio-main">
             <header class="profile-hero">
                 <div class="profile-language-switcher">
                     <LanguageSwitcher lang={lang} />
@@ -48,24 +54,39 @@ export function getStaticPaths() {
                         {content.introduction.map((paragraph) => <p>{paragraph}</p>)}
                     </div>
                     <div class="profile-links" aria-label={content.accountsTitle}>
-                        {content.accounts.map((account) => (
+                        {primaryAccounts.map((account) => (
                             <a href={account.href} target="_blank" rel="noopener noreferrer">
-                                {account.label}
+                                {account.label} <span aria-hidden="true">↗</span>
+                                <span class="sr-only">{labels.newTab}</span>
                             </a>
                         ))}
                     </div>
                 </div>
             </header>
 
-            {mainSections.map((section) => (
-                <section class="profile-section">
+            <nav class="page-navigation" aria-label={labels.navigation}>
+                {mainSections.slice(0, 4).map(({ id, section }) => (
+                    <a href={`#${id}`}>{section.heading}</a>
+                ))}
+            </nav>
+
+            {mainSections.map(({ id, section, featured }) => (
+                <section id={id} class="profile-section">
                     <div class="section-heading">
                         <h2>{section.heading}</h2>
                         {section.intro && <p>{section.intro}</p>}
                     </div>
-                    <div class:list={["card-grid", section === content.talks && "card-grid-talks"]}>
+                    <div class:list={[
+                        "card-grid",
+                        section.items.length === 1 && "card-grid-single",
+                        section === content.talks && "card-grid-talks",
+                    ]}>
                         {section.items.map((item) => (
-                            <article class="profile-card">
+                            <article class:list={[
+                                "profile-card",
+                                featured && "profile-card-featured",
+                                section === content.talks && "profile-card-talk",
+                            ]}>
                                 <div>
                                     <h3>{item.title}</h3>
                                     {item.meta && <p class="card-meta">{item.meta}</p>}
@@ -74,7 +95,7 @@ export function getStaticPaths() {
                                     {item.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
                                 </div>
                                 {item.tags && (
-                                    <ul class="tag-list" aria-label="Technologies">
+                                    <ul class="tag-list" aria-label={labels.tags}>
                                         {item.tags.map((tag) => <li>{tag}</li>)}
                                     </ul>
                                 )}
@@ -83,6 +104,7 @@ export function getStaticPaths() {
                                         {item.links.map((link) => (
                                             <a href={link.href} target="_blank" rel="noopener noreferrer">
                                                 {link.label} <span aria-hidden="true">↗</span>
+                                                <span class="sr-only">{labels.newTab}</span>
                                             </a>
                                         ))}
                                     </div>
@@ -93,7 +115,7 @@ export function getStaticPaths() {
                 </section>
             ))}
 
-            <section class="profile-section">
+            <section id="skills" class="profile-section">
                 <div class="section-heading">
                     <h2>{content.skillsTitle}</h2>
                 </div>
@@ -105,6 +127,20 @@ export function getStaticPaths() {
                                 {group.items.map((item) => <li>{item}</li>)}
                             </ul>
                         </article>
+                    ))}
+                </div>
+            </section>
+
+            <section class="profile-section more-links-section">
+                <div class="section-heading">
+                    <h2>{labels.moreLinks}</h2>
+                </div>
+                <div class="profile-links mt-0" aria-label={labels.moreLinks}>
+                    {secondaryAccounts.map((account) => (
+                        <a href={account.href} target="_blank" rel="noopener noreferrer">
+                            {account.label} <span aria-hidden="true">↗</span>
+                            <span class="sr-only">{labels.newTab}</span>
+                        </a>
                     ))}
                 </div>
             </section>
