@@ -52,15 +52,15 @@ const links = entries.map(([lang, label]) => {
 });
 ---
 
-<div class="flex items-center gap-2 text-sm text-white">
-    <span class="font-semibold uppercase tracking-wide">Language</span>
-    <div class="flex overflow-hidden rounded border border-white/40">
+<div class="flex items-center text-sm text-slate-600">
+    <span class="sr-only">Language</span>
+    <div class="flex overflow-hidden rounded border border-slate-300 bg-white shadow-sm">
         {links.map(({ lang, label, href, active }) => (
             <a
                 href={href}
-                class={[
+                class:list={[
                     "px-3 py-1 text-xs font-semibold transition-colors",
-                    active ? "bg-white text-blue-600" : "bg-blue-500 text-white/80 hover:bg-blue-400",
+                    active ? "bg-blue-500 text-white" : "bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-700",
                 ]}
                 aria-current={active ? "page" : undefined}
                 hreflang={lang}
