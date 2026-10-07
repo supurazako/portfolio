@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "supurazako-portfolio",
+  "compatibility_date": "2026-10-07",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    {
+      "pattern": "portfolio.supurazako.com",
+      "custom_domain": true
+    }
+  ]
+}

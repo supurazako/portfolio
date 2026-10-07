@@ -7,6 +7,5 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
-    site: 'https://supurazako.github.io',
-    base: '/portfolio/',
+    site: 'https://portfolio.supurazako.com',
 });

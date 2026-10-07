@@ -7,7 +7,7 @@ export interface Props {
 }
 const { title = "Portfolio", description = "Miyamoto Naoyuki's portfolio", ogImage, canonicalURL } = Astro.props;
 const socialImageURL = ogImage ?? `${import.meta.env.BASE_URL}default-ogp.png`;
-const finalURL = canonicalURL ?? new URL(Astro.url.pathname, Astro.site || "https://supurazako.github.io/portfolio/").href;
+const finalURL = canonicalURL ?? new URL(Astro.url.pathname, Astro.site || "https://portfolio.supurazako.com/").href;
 ---
 <head prefix="og: https://ogp.me/ns#">
     <meta charset="utf-8" />
